@@ -101,7 +101,7 @@ unsigned layer_config[][NUM_CONFIG_ITEM] = {{0,
 							4, 4, 4096, 7, 0, 0, 1,
 							0, 4, 4, 4096, 0, 0,
 							0,
-							3},//Layer-14  (fc6)							
+							3},//Layer-14  (fc6)
 							{1,
 							4, 4, 4096, 1, 1, 4096, 4096, 4096,
 							3,
@@ -115,7 +115,7 @@ unsigned layer_config[][NUM_CONFIG_ITEM] = {{0,
 							4, 4, 1024, 1, 0, 0, 0,
 							0, 4, 4, 1024, 0, 0,
 							0,
-							3}//Layer-16  (fc8)		
+							3}//Layer-16  (fc8)
 							};
 
 char precision_config[][3] ={{7,  0, -2},//Layer-1
@@ -226,13 +226,13 @@ unsigned output_config[3] = {1, 1, 1024};//Layer-8  Note: only one result is ext
 
 
 /* ------------------------------------------------------------------------
- * 
+ *
  * The following configurations are used for development and test only
  *
  * ------------------------------------------------------------------------
  */
 
- /*	
+ /*
 // Test FC only (AlexNet fc6-fc8)
 unsigned layer_config[][NUM_CONFIG_ITEM] = {{1,
 							6, 6, 256, 6, 6, 256, 4096, 4096,  // Note: The input size (dim1/dim2) is the combined data size (batched)
@@ -256,12 +256,12 @@ unsigned layer_config[][NUM_CONFIG_ITEM] = {{1,
 							0,
 							3}//Layer-8 fc
 							};
-							
+
 char precision_config[][3] ={{11, -1,  0},//Layer-6
 							{10,  0,  2},//Layer-7
 							{10,  2,  2}//Layer-8
 							};
-							
+
 unsigned input_config[3] = {6, 6, 256}; //original image size
 
 unsigned output_config[3] = {1, 1, 1024};//Layer-8
@@ -329,7 +329,7 @@ char precision_config[][3] ={{7,  0, -2}//Layer-1
 							};
 */
 
-
+/*
 // Test with batch=1
 // Alexnet Configuration
 unsigned layer_config[][NUM_CONFIG_ITEM] = {{0,
@@ -412,10 +412,10 @@ unsigned input_config[5] = {227, 227, 3, 1}; //original image size(dim1, dim2, d
 //unsigned output_config[3] = {1, 1, 4096};//Layer-6
 
 unsigned output_config[3] = {1, 1, 1024};//Layer-8  Note: only one result is extracted and verified
+*/
 
 
 
-/*
 // Test with batch=1
 // VGG-16 Configuration
 unsigned layer_config[][NUM_CONFIG_ITEM] = {{0,
@@ -515,7 +515,7 @@ unsigned layer_config[][NUM_CONFIG_ITEM] = {{0,
 							1, 1, 4096, 7, 0, 0, 1,
 							0, 1, 1, 4096, 0, 0,
 							0,
-							3},//Layer-14  (fc6)							
+							3},//Layer-14  (fc6)
 							{1,
 							1, 1, 4096, 1, 1, 4096, 4096, 4096,
 							3,
@@ -529,7 +529,7 @@ unsigned layer_config[][NUM_CONFIG_ITEM] = {{0,
 							1, 1, 1024, 1, 0, 0, 0,
 							0, 1, 1, 1024, 0, 0,
 							0,
-							3}//Layer-16  (fc8)		
+							3}//Layer-16  (fc8)
 							};
 
 char precision_config[][3] ={{7,  0, -2},//Layer-1
@@ -569,5 +569,3 @@ unsigned input_config[4] = {224, 224, 3, 1};
 //unsigned output_config[3] = {1, 1, 4096};//Layer-14
 
 unsigned output_config[3] = {1, 1, 1024};//Layer-16
-*/
-	
