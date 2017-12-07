@@ -561,7 +561,11 @@ int main(int argc, char** argv)
 	unsigned char  weight_dim1x2;
 	unsigned int   weight_dim1x2x3;
 	unsigned short weight_dim4_div_LaneNum;
+<<<<<<< HEAD
     unsigned int   item_loop_bound;
+=======
+
+>>>>>>> 6019cfd1185b588242f2e15a54d9feebf00823b9
 	// Kernel excutions main loops
 	for(unsigned i = 0; i < num_devices; ++i) {
 
@@ -615,8 +619,11 @@ int main(int argc, char** argv)
 			weight_dim1x2 = layer_config[j][weight_w]*layer_config[j][weight_h];
 			weight_dim1x2x3 = layer_config[j][weight_w]*layer_config[j][weight_h]*layer_config[j][weight_n];
 
+<<<<<<< HEAD
 			item_loop_bound = conv_win_size_dim1>=conv_group_rem_dim1?(conv_win_size_dim1x2x3/VEC_SIZE):(conv_group_rem_dim1x2x3/VEC_SIZE);
 
+=======
+>>>>>>> 6019cfd1185b588242f2e15a54d9feebf00823b9
 			status = clSetKernelArg(knl_memRd[i], argi++, sizeof(cl_uchar), &layer_config[j][data_w]);
 			checkError(status, "Failed to set argument %d of kernel memRd", argi - 1);
 
@@ -683,9 +690,12 @@ int main(int argc, char** argv)
 			status = clSetKernelArg(knl_memRd[i], argi++, sizeof(cl_uint), &conv_win_size_dim1x2x3);
 			checkError(status, "Failed to set argument %d of kernel memRd", argi - 1);
 
+<<<<<<< HEAD
 			status = clSetKernelArg(knl_memRd[i], argi++, sizeof(cl_uint), &item_loop_bound);
 			checkError(status, "Failed to set argument %d of kernel memRd", argi - 1);
 
+=======
+>>>>>>> 6019cfd1185b588242f2e15a54d9feebf00823b9
 			// Select the kernel input mem object source
 			// data_buf -> conv1 -> output_buf -> lrn1 -> data_buf -> conv2 -> output_buf -> lrn2 -> data_buf
 			// -> conv3 -> output_buf -> conv4 -> output_buf -> ...
