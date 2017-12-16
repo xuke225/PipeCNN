@@ -38,7 +38,7 @@ using namespace ocl_util;
 typedef  signed char  DTYPE;
 
 #ifdef XILINX
-#define USE_SDX_1DDR
+//#define USE_SDX_1DDR
 //#define USE_SDX_4DDR
 #endif
 
@@ -117,6 +117,23 @@ const char *input_file_path = "./data/data_alex/image.dat";
 const char *ref_file_path = "./data/data_alex/pool2.dat";
 const char *dump_file_path = "./result_dump.txt";
 */
+
+/*
+// AlexNet
+// Original problem size
+// File size is in num of DTYPE numbers
+#define IMAGE_FILE_SIZE   (227*227*3)
+//#define WEIGHTS_FILE_SIZE 60965224 //fc8-1000
+#define WEIGHTS_FILE_SIZE 61063552  //fc8-1024
+#define LAYER_NUM         8
+#define CONV_NUM          5
+const char *weight_file_path = "./data/data_alex/weights.dat";
+const char *input_file_path = "./data/data_alex/image.dat";
+const char *ref_file_path = "./data/data_alex/fc8.dat";
+const char *dump_file_path = "./result_dump.txt";
+*/
+
+
 
 // VGG16
 // Original problem size
@@ -561,12 +578,9 @@ int main(int argc, char** argv)
     unsigned char  weight_dim1x2;
     unsigned int   weight_dim1x2x3;
     unsigned short weight_dim4_div_LaneNum;
-    <<<<<<< HEAD
-    unsigned int   item_loop_bound;
-    =======
 
-        >>>>>>> 6019cfd1185b588242f2e15a54d9feebf00823b9
-        // Kernel excutions main loops
+    unsigned int   item_loop_bound;
+    // Kernel excutions main loops
     for(unsigned i = 0; i < num_devices; ++i) {
 
         // Each iteration excutes one layer convolution
@@ -618,12 +632,9 @@ int main(int argc, char** argv)
                 weight_dim1x2 = layer_config[j][weight_w]*layer_config[j][weight_h];
                 weight_dim1x2x3 = layer_config[j][weight_w]*layer_config[j][weight_h]*layer_config[j][weight_n];
 
-                <<<<<<< HEAD
                 item_loop_bound = conv_win_size_dim1>=conv_group_rem_dim1?(conv_win_size_dim1x2x3/VEC_SIZE):(conv_group_rem_dim1x2x3/VEC_SIZE);
 
-                =======
-                    >>>>>>> 6019cfd1185b588242f2e15a54d9feebf00823b9
-                    status = clSetKernelArg(knl_memRd[i], argi++, sizeof(cl_uchar), &layer_config[j][data_w]);
+                status = clSetKernelArg(knl_memRd[i], argi++, sizeof(cl_uchar), &layer_config[j][data_w]);
                 checkError(status, "Failed to set argument %d of kernel memRd", argi - 1);
 
                 status = clSetKernelArg(knl_memRd[i], argi++, sizeof(cl_uchar), &layer_config[j][data_h]);
@@ -689,15 +700,12 @@ int main(int argc, char** argv)
                 status = clSetKernelArg(knl_memRd[i], argi++, sizeof(cl_uint), &conv_win_size_dim1x2x3);
                 checkError(status, "Failed to set argument %d of kernel memRd", argi - 1);
 
-                <<<<<<< HEAD
                 status = clSetKernelArg(knl_memRd[i], argi++, sizeof(cl_uint), &item_loop_bound);
                 checkError(status, "Failed to set argument %d of kernel memRd", argi - 1);
 
-                =======
-                    >>>>>>> 6019cfd1185b588242f2e15a54d9feebf00823b9
-                    // Select the kernel input mem object source
-                    // data_buf -> conv1 -> output_buf -> lrn1 -> data_buf -> conv2 -> output_buf -> lrn2 -> data_buf
-                    // -> conv3 -> output_buf -> conv4 -> output_buf -> ...
+                // Select the kernel input mem object source
+                // data_buf -> conv1 -> output_buf -> lrn1 -> data_buf -> conv2 -> output_buf -> lrn2 -> data_buf
+                // -> conv3 -> output_buf -> conv4 -> output_buf -> ...
                 if(layer_config[j][memrd_src]==0) {
                     status = clSetKernelArg(knl_memRd[i], argi++, sizeof(cl_mem), &data_buf[i*input_config[batch_size]+k]);
                     checkError(status, "Failed to set argument %d of kernel memRd", argi - 1);
