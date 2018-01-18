@@ -43,10 +43,10 @@
 //MemRD Kernel
 #define CONV_GP_SIZE_X      7
 #define CONV_GP_SIZE_Y      1              // In this version, CONV_GP_SIZE_Y must be 1
-//#define WIN_BUF_SIZE        9216/VEC_SIZE  // for AlexNet  batch=1
-//#define WEIGHT_BUF_SIZE     9216/VEC_SIZE  // for AlexNet  batch=1
-#define WIN_BUF_SIZE        25088/VEC_SIZE // for VGG-16  batch=1
-#define WEIGHT_BUF_SIZE     25088/VEC_SIZE // for VGG-16  batch=1
+#define WIN_BUF_SIZE        9216/VEC_SIZE  // for AlexNet  batch=1
+#define WEIGHT_BUF_SIZE     9216/VEC_SIZE  // for AlexNet  batch=1
+//#define WIN_BUF_SIZE        25088/VEC_SIZE // for VGG-16  batch=1
+//#define WEIGHT_BUF_SIZE     25088/VEC_SIZE // for VGG-16  batch=1
 //#define WIN_BUF_SIZE        CONV_GP_SIZE_X*9216/VEC_SIZE  // for AlexNet  batch>=4
 //#define WEIGHT_BUF_SIZE     9216/VEC_SIZE                 // for AlexNet  batch>=4
 // Conv Kernel

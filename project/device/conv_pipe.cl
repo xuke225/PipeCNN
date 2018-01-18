@@ -116,11 +116,11 @@ void memRead(
     uchar  win_size_x,
     uchar  win_size_y,
     uint   win_size_xyz,
-    uint   item_loop_bound,
+    //uint   item_loop_bound,
     // Data Ports
-    __global lane_data    *restrict bottom   //__attribute__((xcl_data_pack(bottom))),
-    ,__global channel_vec  *restrict weights //__attribute__((xcl_data_pack(weights))),
-    ,__global channel_scal *restrict bias   )// __attribute__((xcl_data_pack(bias)))    )
+    __global lane_data    *restrict bottom ,
+    __global channel_vec  *restrict weights ,
+    __global channel_scal *restrict bias   )
 
 {
 
@@ -144,7 +144,7 @@ void memRead(
 
     ushort feature_idx_dim1, feature_idx_dim2;
     ushort feature_idx_dim3;
-
+    uint   item_loop_bound;
     uchar  flag; // ping-pong flag
 
     // Ping-pong buffer
@@ -212,6 +212,12 @@ Group:
         win_itm_x = 0;
         win_itm_y = 0;
         win_itm_z = 0;
+
+        if(gp_num_x==group_num_x-1) // last group in each row
+            // ensuring that both winbuf load loop and output loop are finished, i.e., use a larger value as the loop bound
+            item_loop_bound = win_size_x>=group_rem_size_x ? (win_size_xyz/VEC_SIZE) : (group_rem_size_xyz/VEC_SIZE);
+        else
+            item_loop_bound = (weight_dim1x2x3*CONV_GP_SIZE_Y*CONV_GP_SIZE_X/VEC_SIZE);
 Item:
         for(unsigned int  win_itm_xyz=0; win_itm_xyz<item_loop_bound; win_itm_xyz++) {
             // Winbuffer loading operations

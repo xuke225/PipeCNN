@@ -80,7 +80,7 @@ endif
 #xilinx
 ifeq ($(VENDOR),xilinx)
 OCC = $(XILINX_SDX)/bin/xocc -DXILINX
-OCCFLAGS = --platform xilinx:kcu1500:4ddr-xpr:4.0 -t $(FLOW) -O2  --kernel_frequency 200  --save-temps  --report system \
+OCCFLAGS = --platform xilinx:kcu1500:4ddr-xpr:4.0 -t $(FLOW) -O2  --kernel_frequency 200 \
 --xp param:compiler.advancedLoopOptimizations=true \
 --memory_port_data_width memWrite:32 \
 --memory_port_data_width memRead:512 \

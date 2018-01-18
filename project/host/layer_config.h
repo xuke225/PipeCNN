@@ -329,7 +329,7 @@ char precision_config[][3] ={{7,  0, -2}//Layer-1
 							};
 */
 
-/*
+
 // Test with batch=1
 // Alexnet Configuration
 unsigned layer_config[][NUM_CONFIG_ITEM] = {{0,
@@ -412,10 +412,10 @@ unsigned input_config[5] = {227, 227, 3, 1}; //original image size(dim1, dim2, d
 //unsigned output_config[3] = {1, 1, 4096};//Layer-6
 
 unsigned output_config[3] = {1, 1, 1024};//Layer-8  Note: only one result is extracted and verified
-*/
 
 
 
+/*
 // Test with batch=1
 // VGG-16 Configuration
 unsigned layer_config[][NUM_CONFIG_ITEM] = {{
@@ -601,3 +601,4 @@ unsigned input_config[4] = {224, 224, 3, 1};
 //unsigned output_config[3] = {1, 1, 4096};//Layer-14
 
 unsigned output_config[3] = {1, 1, 1024};//Layer-16
+*/
